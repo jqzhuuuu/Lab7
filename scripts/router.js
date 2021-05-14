@@ -54,8 +54,6 @@ router.setState = function(counter, journalEntryElement) {
      h1.innerHTML = title;
 
      body.classList = null;
-
-     history.pushState(state, title, url);
    }
    else if(counter == -1)
    {
@@ -68,7 +66,6 @@ router.setState = function(counter, journalEntryElement) {
 
      body.classList.add('settings');
      entryPage.replaceWith(entryPageElement);
-     history.pushState(state, title, url);
     }
    else
    {
@@ -81,7 +78,6 @@ router.setState = function(counter, journalEntryElement) {
     body.classList.add('single-entry');
     entryPageElement.entry = journalEntryElement;
     entryPage.replaceWith(entryPageElement);
-    //console.log(state);
-    history.pushState(state, title, url);
    }
+   history.pushState(state, title, url);
 }
