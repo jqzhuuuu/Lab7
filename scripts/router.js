@@ -44,30 +44,44 @@ router.setState = function(counter, journalEntryElement) {
    let title;
    let url;
 
+   const h1 = document.getElementsByTagName('h1')[0];
+
    if(counter == 0)
    {
      title = "Journal Entries";
      url = "/";
 
+     h1.innerHTML = title;
+
      body.classList = null;
+
+     history.pushState(state, title, url);
    }
    else if(counter == -1)
    {
      title = "Settings";
      url = "/#settings"
-   }
+
+     h1.innerHTML = title;
+
+     body.classList = null;
+
+     body.classList.add('settings');
+     entryPage.replaceWith(entryPageElement);
+     history.pushState(state, title, url);
+    }
    else
    {
     title = "Entry " + counter;
     url = "/#entry" + counter;
 
+    h1.innerHTML = title;
+
+    body.classList = null;
     body.classList.add('single-entry');
     entryPageElement.entry = journalEntryElement;
     entryPage.replaceWith(entryPageElement);
-    console.log(state);
+    //console.log(state);
     history.pushState(state, title, url);
    }
-
-  //console.log(title);
-  
 }

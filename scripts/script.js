@@ -3,6 +3,7 @@
 import { router } from './router.js'; // Router imported so you can use it to manipulate your SPA app here
 const setState = router.setState;
 
+const h1 = document.getElementsByTagName('h1')[0];
 var counter = 0;
 // Make sure you register your service worker here too
 
@@ -23,6 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+const Settings = document.getElementsByTagName('header')[0].children[1];
+
+Settings.addEventListener('click', () => {
+  router.setState(-1, null);
+});
+
 window.onpopstate = function(event) {
-  router.setState(0, null);
+  
 };
+
+h1.addEventListener('click', () => {
+  router.setState(0, null);
+});
