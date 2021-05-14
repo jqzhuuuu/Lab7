@@ -36,18 +36,38 @@ router.setState = function(counter, journalEntryElement) {
    *    2. You may modify the parameters of setState() as much as you like
    */
 
-  let state = {entry: counter};
-  let title = "Entry " + counter;
-  let url = "/#entry" + counter;
-  console.log(title);
-  history.pushState(state , title, url);
+   const body = document.getElementsByTagName('body')[0];
+   const entryPage = document.getElementsByTagName('entry-page')[0];
+   const entryPageElement = document.createElement('entry-page');
+  
+   let state = {entry: counter, data: journalEntryElement};
+   let title;
+   let url;
 
-  const body = document.getElementsByTagName('body')[0];
-  const entryPage = document.getElementsByTagName('entry-page')[0];
-  const entryPageElement = document.createElement('entry-page');
+   if(counter == 0)
+   {
+     title = "Journal Entries";
+     url = "/";
 
-  body.classList.add('single-entry');
-  entryPageElement.entry = journalEntryElement;
-  entryPage.replaceWith(entryPageElement);
+     body.classList = null;
+   }
+   else if(counter == -1)
+   {
+     title = "Settings";
+     url = "/#settings"
+   }
+   else
+   {
+    title = "Entry " + counter;
+    url = "/#entry" + counter;
+
+    body.classList.add('single-entry');
+    entryPageElement.entry = journalEntryElement;
+    entryPage.replaceWith(entryPageElement);
+    console.log(state);
+    history.pushState(state, title, url);
+   }
+
+  //console.log(title);
   
 }

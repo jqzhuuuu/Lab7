@@ -22,3 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 });
+
+window.onpopstate = function(event) {
+  router.setState(0, null);
+};
