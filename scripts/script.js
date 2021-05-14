@@ -12,11 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(entries => {
       entries.forEach(entry => {
         counter++;
+        let perm = counter;
         let newPost = document.createElement('journal-entry');
         newPost.addEventListener('click', () => {
-          router.setState(counter);
+          router.setState(perm, entry);
         });
-        //console.log(counter);
         newPost.entry = entry;
         document.querySelector('main').appendChild(newPost);
       });
