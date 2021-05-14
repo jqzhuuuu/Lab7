@@ -16,6 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
         let perm = counter;
         let newPost = document.createElement('journal-entry');
         newPost.addEventListener('click', () => {
+          let state = {entryNo: perm, data: entry};
+          let title;
+          let url = "/#entry" + perm;
+          history.pushState(state, title, url);
+
           router.setState(perm, entry);
         });
         newPost.entry = entry;
@@ -27,13 +32,24 @@ document.addEventListener('DOMContentLoaded', () => {
 const Settings = document.getElementsByTagName('header')[0].children[1];
 
 Settings.addEventListener('click', () => {
+  history.pushState({entryNo: -1, data: null}, null, "/#settings");
+
   router.setState(-1, null);
 });
 
 window.onpopstate = function(event) {
-  
+  if(event.state == null){
+    router.setState(0, null);
+  }else {
+    let entryNum = event.state.entryNo;
+    let entryData = event.state.data;
+
+    router.setState(entryNum, entryData);
+  }
 };
 
 h1.addEventListener('click', () => {
+  history.pushState({entryNo: 0, data: null}, null, "/");
+
   router.setState(0, null);
 });

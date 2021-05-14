@@ -39,49 +39,32 @@ router.setState = function(counter, journalEntryElement) {
    const body = document.getElementsByTagName('body')[0];
    const entryPage = document.getElementsByTagName('entry-page')[0];
    const entryPageElement = document.createElement('entry-page');
-  
-   let state = {entry: counter, data: journalEntryElement};
-   let title;
-   let url;
 
    const h1 = document.getElementsByTagName('h1')[0];
 
    if(counter == 0)
    {
-     title = "Journal Entries";
-     url = "/";
-
-     h1.innerHTML = title;
+     h1.innerHTML = "Journal Entries";
 
      body.classList = null;
-
-     history.pushState(state, title, url);
    }
    else if(counter == -1)
    {
-     title = "Settings";
-     url = "/#settings"
-
-     h1.innerHTML = title;
+     h1.innerHTML = "Settings";
 
      body.classList = null;
 
      body.classList.add('settings');
      entryPage.replaceWith(entryPageElement);
-     history.pushState(state, title, url);
     }
    else
    {
-    title = "Entry " + counter;
-    url = "/#entry" + counter;
-
-    h1.innerHTML = title;
+    h1.innerHTML = "Entry " + counter;
 
     body.classList = null;
     body.classList.add('single-entry');
     entryPageElement.entry = journalEntryElement;
     entryPage.replaceWith(entryPageElement);
     //console.log(state);
-    history.pushState(state, title, url);
    }
 }
