@@ -66,5 +66,4 @@ router.setState = function(counter, journalEntryElement) {
     entryPageElement.entry = journalEntryElement;
     entryPage.replaceWith(entryPageElement);
    }
-   history.pushState(state, title, url);
 }
